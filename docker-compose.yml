@@ -1,0 +1,13 @@
+version: '2'
+services:
+  gerrit:
+    container_name: "gerrit"
+    image: "wguo/gerrit:0.1"
+    build:
+      context: "./gerrit_dsfile"
+      dockerfile: "Dockerfile"
+    ports:
+     - "8080:8080"
+     - "29418:29418"
+    
+    
