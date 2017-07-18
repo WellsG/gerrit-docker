@@ -8,7 +8,7 @@ ENV GERRIT_USER gerrit2
 
 RUN adduser gerrit2 -d ${GERRIT_HOME} 
 RUN yum install -y openssl openssh perl curl su-exec wget git
-RUN cd ${GERRIT_HOME} && wget -o gerrit.war https://www.gerritcodereview.com/download/gerrit-${GERRIT_VERSION}.war
+RUN cd ${GERRIT_HOME} && wget https://www.gerritcodereview.com/download/gerrit-${GERRIT_VERSION}.war
 RUN mv ${GERRIT_HOME}/gerrit-${GERRIT_VERSION}.war ${GERRIT_HOME}/gerrit.war
 RUN chown ${GERRIT_USER}:${GERRIT_USER} -R ${GERRIT_HOME}
 
