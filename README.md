@@ -10,7 +10,7 @@ sudo docker run -it -p 8080:8080 <image_id> /bin/bash
 
 * docker-compose
 ```
-sudo docker -compose build
+sudo docker-compose build
 sudo docker-compose run --service-ports gerrit bash
 ```
 
