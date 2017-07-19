@@ -14,5 +14,8 @@ sudo docker-compose build
 sudo docker-compose run --service-ports gerrit bash
 ```
 
-[Gerrit Documentaion](https://gerrit-documentation.storage.googleapis.com/Documentation/2.14.1/index.html)
-[Gerrit Tutorial](https://www.mediawiki.org/wiki/Gerrit/Tutorial#Setting_up_Git)
+* Validate container
+[http://localhost:8080](http://localhost:8080)
+
+[Gerrit Documentaion](https://gerrit-documentation.storage.googleapis.com/Documentation/2.14.1/index.html)  
+[Gerrit Tutorial](https://www.mediawiki.org/wiki/Gerrit/Tutorial#Setting_up_Git)  
