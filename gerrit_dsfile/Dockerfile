@@ -6,7 +6,7 @@ ENV GERRIT_HOME /var/gerrit
 ENV GERRIT_VERSION 2.14.1
 ENV GERRIT_USER gerrit2
 
-# User toot to add user and install software
+# User root to add user and install software
 USER root
 
 RUN adduser gerrit2 -d ${GERRIT_HOME} 
