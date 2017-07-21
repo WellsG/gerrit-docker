@@ -1,4 +1,4 @@
-FROM fabric8/java-centos-openjdk8-jdk
+FROM jboss/base-jdk:8
 
 MAINTAINER wguo <guowj12@gmail.com>
 
@@ -6,14 +6,23 @@ ENV GERRIT_HOME /var/gerrit
 ENV GERRIT_VERSION 2.14.1
 ENV GERRIT_USER gerrit2
 
+# User toot to add user and install software
+USER root
+
 RUN adduser gerrit2 -d ${GERRIT_HOME} 
 RUN yum install -y openssl openssh perl curl su-exec wget git
 RUN cd ${GERRIT_HOME} && wget https://www.gerritcodereview.com/download/gerrit-${GERRIT_VERSION}.war
 RUN mv ${GERRIT_HOME}/gerrit-${GERRIT_VERSION}.war ${GERRIT_HOME}/gerrit.war
 RUN chown ${GERRIT_USER}:${GERRIT_USER} -R ${GERRIT_HOME}
 
-RUN su - ${GERRIT_USER} -c "java -jar gerrit.war init -d ${GERRIT_HOME}"
-RUN su - ${GERRIT_USER} -c "java -jar gerrit.war reindex"
+# Switch to gerrit2 to init gerrit
+USER ${GERRIT_USER}
+
+RUN cd ${GERRIT_HOME} && java -jar gerrit.war init -d ${GERRIT_HOME}
+RUN cd ${GERRIT_HOME} && java -jar gerrit.war reindex
+
+# Back to root
+USER root
 
 COPY gerrit.config /var/gerrit/etc/gerrit.config
 RUN chown ${GERRIT_USER}:${GERRIT_USER} -R ${GERRIT_HOME}
